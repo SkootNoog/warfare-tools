@@ -41,6 +41,13 @@ yarn-error.log
 testem.log
 /typings
 
+#database stufffffffs
+docker-compose.yml
+ormconfig.json
+
 # System Files
 .DS_Store
 Thumbs.db
+
+# Auth Stuff
+.env

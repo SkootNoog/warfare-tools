@@ -1,0 +1,29 @@
+<div *ngFor="let unit of units | async">
+  <div class="container">
+    <div class="card border border-primary" style="width: 25rem">
+      <div class="card-body">
+        <h5 class="card-title">{{unit.unitName}}</h5>
+        <div class="row border rounded">
+          <div class="col" style="width: 20rem">
+            <p class="text-left">{{ unit.ancestry }} {{ unit.experience }} {{ unit.equipment }} {{ unit.unitType }}</p>
+          </div>
+          <div class="col">
+            <p class="text-right">d{{ unit.unitSize }}</p>
+          </div>
+        </div>
+        <div class="w-100"></div>
+        <!--<div class="row border rounded" *ngFor="let ability of unit.abilities">
+          <div class="col">
+            <p class="card-text">{{ability.abilityName}}: {{ability.description}}</p>
+          </div>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<ul *ngFor="let unit of units">
+  <li> {{ unit.unitName }}</li>
+</ul>
+-->
