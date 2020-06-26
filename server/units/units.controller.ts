@@ -54,7 +54,8 @@ export class UnitsController {
     @Body('orders') orders: CreateOrderDto[],
     @Body('traits') traits: CreateTraitDto[]
   ): Promise<Unit> {
-    return this.unitsService.updateUnit(+unitId, user, unit, ancestry, orders, traits);
+    console.log(+unitId);
+    return this.unitsService.updateUnit( +unitId, user, unit, ancestry, orders, traits);
   }
 
   @UseGuards(JwtAuthGuard)

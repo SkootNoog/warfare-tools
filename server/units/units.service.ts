@@ -38,7 +38,7 @@ export class UnitsService {
 
   async getSingleUnit(id: number
   ): Promise<Unit>{
-    return this.unitsRepository.findOne(id, { relations: ['ancestry']});
+    return this.unitsRepository.findOne(id);
   }
 
 
@@ -49,10 +49,10 @@ export class UnitsService {
                    orders: CreateOrderDto[],
                    traits: CreateTraitDto[]
   ): Promise<Unit>{
+    console.log(id);
     const unit = await this.unitCU(unitData, ancestryData, orders, traits);
 
-    await this.unitsRepository.update(id,unit);
-    return this.unitsRepository.findOne(id);
+    return this.unitsRepository.save(unit);
   }
 
   async remove(id: number): Promise<void> {
@@ -66,7 +66,7 @@ export class UnitsService {
    * @param ancestryData - ancestry dto object
    * @param ordersData - orders dto object array
    * @param traitsData - traits dto object array
-   * @param user - optional paramater, give the unit a user if created
+   * @param user - optional parameter, give the unit a user if created
    * @param ownerId - optional parameter, used to create unit but not to update
    */
   async unitCU(unitData: CreateUnitDto,
@@ -94,7 +94,7 @@ export class UnitsService {
       unit.ancestry = ancestry;
     }
 
-    if(ordersData) {
+    if(ordersData && ordersData.length !== 0) {
       const orders = [];
 
       for (const orderD of ordersData) {
@@ -104,8 +104,11 @@ export class UnitsService {
 
       unit.orders = orders;
     }
+    else{
+      unit.orders = [];
+    }
 
-    if(traitsData) {
+    if(traitsData && traitsData.length !== 0) {
       const traits = [];
 
       for (const traitD of traitsData) {
@@ -114,6 +117,9 @@ export class UnitsService {
       }
 
       unit.traits = traits;
+    }
+    else{
+      unit.traits = [];
     }
 
     return unit;

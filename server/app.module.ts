@@ -14,6 +14,8 @@ import {Ancestry} from './ancestrys/ancestry.entity';
 import {Order} from './orders/order.entity';
 import {Trait} from './traits/traits.entity';
 import {Army} from './armys/army.entity';
+import {AncestrysModule} from './ancestrys/ancestrys.module';
+import {ArmysModule} from './armys/armys.module';
 
 @Module({
   imports: [
@@ -42,7 +44,9 @@ import {Army} from './armys/army.entity';
     }),
     UnitsModule,
     UsersModule,
-    AuthModule
+    AuthModule,
+    AncestrysModule,
+    ArmysModule
   ],
   controllers: [HelloController]
 })
