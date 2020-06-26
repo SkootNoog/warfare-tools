@@ -2,6 +2,9 @@ import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export class Ancestry {
+  constructor(ancestry: Partial<Ancestry> = {}) {
+    Object.assign(this, ancestry);
+  }
 
   @PrimaryGeneratedColumn()
   id: number;

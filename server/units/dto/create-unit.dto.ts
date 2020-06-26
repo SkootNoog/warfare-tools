@@ -1,4 +1,5 @@
 export class CreateUnitDto {
+  id?: number;
   name: string;
   attack: number;
   power: number;

@@ -44,15 +44,15 @@ export class UnitsController {
     return this.unitsService.getSingleUnit(+unitId);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   updateUnit(
     @Param('id') unitId: string,
     @AuthUser() user: User,
     @Body() unit: Unit,
-    @Body() ancestry: CreateAncestryDto,
-    @Body() orders: CreateOrderDto[],
-    @Body() traits: CreateTraitDto[]
+    @Body('ancestry') ancestry: CreateAncestryDto,
+    @Body('orders') orders: CreateOrderDto[],
+    @Body('traits') traits: CreateTraitDto[]
   ): Promise<Unit> {
     return this.unitsService.updateUnit(+unitId, user, unit, ancestry, orders, traits);
   }

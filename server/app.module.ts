@@ -26,6 +26,7 @@ import {Army} from './armys/army.entity';
       database: 'devdb',
       entities: [User, Army, Unit, Ancestry, Order, Trait],
       synchronize: true,
+      // dropSchema: true,
       migrationsTableName: 'migrations',
       migrations: ['migration/*.js'],
       cli: {
@@ -41,7 +42,7 @@ import {Army} from './armys/army.entity';
     }),
     UnitsModule,
     UsersModule,
-    //AuthModule
+    AuthModule
   ],
   controllers: [HelloController]
 })

@@ -2,6 +2,9 @@ import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export class Trait {
+  constructor(trait: Partial<Trait> = {}) {
+    Object.assign(this, trait);
+  }
 
   @PrimaryGeneratedColumn()
   id: number;

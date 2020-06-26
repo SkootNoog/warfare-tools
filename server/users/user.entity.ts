@@ -34,7 +34,7 @@ export class User {
   @IsEmail()
   email: string;
 
-  @Column({type: 'varchar', length: 20})
+  @Column({type: 'varchar', length: 20, unique: true})
   username: string;
 
   @Column()
@@ -59,23 +59,23 @@ export class User {
   @OneToMany(type => Unit, unit => unit.owner)
   ownedUnits: Unit[];
 
-  @ManyToMany(type => Unit)
-  @JoinTable()
+  @ManyToMany(type => Unit, unit => unit.users)
+  @JoinTable({name: 'user_units'})
   units: Unit[];
 
   @ManyToMany(type => Ancestry)
-  @JoinTable()
+  @JoinTable({name: 'user_ancestrys'})
   ancestrys: Ancestry[];
 
   @ManyToMany(type => Trait)
-  @JoinTable()
+  @JoinTable({name: 'user_traits'})
   traits: Trait[];
 
   @ManyToMany(type => Order)
-  @JoinTable()
+  @JoinTable({name: 'user_orders'})
   orders: Order[];
 
   @ManyToMany(type => User)
-  @JoinTable()
+  @JoinTable({name: 'user_friends'})
   friends: User[];
 }

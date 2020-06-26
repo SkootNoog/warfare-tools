@@ -58,7 +58,7 @@ export class Unit {
   @ManyToOne(type => User, user => user.ownedUnits)
   owner: User;
 
-  @ManyToMany(type => User)
+  @ManyToMany(type => User, user => user.units)
   @JoinTable()
   users: User[];
 
@@ -66,14 +66,14 @@ export class Unit {
     eager: true,
     cascade: ['insert', 'update']
   })
-  @JoinTable()
+  @JoinTable({name: 'unit_traits'})
   traits: Trait[];
 
   @ManyToMany(type => Order, {
     eager: true,
     cascade: ['insert', 'update']
   })
-  @JoinTable()
+  @JoinTable({name: 'unit_orders'})
   orders: Order[];
 
 
