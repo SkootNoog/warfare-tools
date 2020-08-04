@@ -43,7 +43,15 @@ export class UsersController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
+    console.log('user login!');
     return this.authService.login(req.user);
+  }
+
+  // TODO: Test this
+  @UseGuards(JwtAuthGuard)
+  @Patch(':id')
+  changePass(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
+    return this.usersService.changePass(id, updateUserDto);
   }
 
 

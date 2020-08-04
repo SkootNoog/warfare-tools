@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Unit } from './Unit';
-import { Ability} from './Ability';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {AuthenticationService} from '../auth/auth.service';
+
 
 @Component({
   selector: 'app-units',
@@ -15,7 +17,7 @@ export class UnitsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.units = this.http.get<Unit[]>( 'http://localhost:4200/api/units');
+    this.units = this.http.get<Unit[]>(`${environment.api}/units`);
     /*
     this.unit = {
       id: 1,

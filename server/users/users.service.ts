@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './user.entity';
 import {UpdateUserDto} from './dto/update-user.dto';
-import * as bcrypt from 'bcrypt-nodejs';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
@@ -38,11 +38,26 @@ export class UsersService {
     await this.usersRepository.delete(id);
   }
 
+  // TODO: Changing username, email, and password all at once is not very secure
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.usersRepository.findOne(id);
 
-    user.email = updateUserDto.email || user.email;
+    if(updateUserDto.email){
+      user.email = updateUserDto.email;
+    }
+
     user.username = updateUserDto.username || user.username;
+
+    if(updateUserDto.password.length !== 0){
+      user.password = await bcrypt.hash(updateUserDto.password, 10);
+    }
+
+    return this.usersRepository.save(user);
+  }
+
+  // TODO: Test this
+  async changePass(id: string, updateUserDto: UpdateUserDto): Promise<User>{
+    const user = await this.usersRepository.findOne(id);
 
     if(updateUserDto.password){
       user.password = await bcrypt.hash(updateUserDto.password, 10);

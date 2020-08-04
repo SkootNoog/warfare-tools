@@ -1,12 +1,43 @@
-import {Ability} from './Ability';
 
-export interface Unit {
+export interface Unit{
   id: number;
-  unitName: string;
+  name: string;
+  attack: number;
+  power: number;
+  morale: number;
+  defense: number;
+  toughness: number;
+  size: number;
   experience: string;
-  ancestry: string;
   equipment: string;
   unitType: string;
-  unitSize: number;
-  // abilities: Ability[];
+  cost: number;
+  ancestry?: AncestryRO;
+  orders?: OrdersRO[];
+  traits?: TraitRO[];
+}
+
+export interface AncestryRO {
+  id: number;
+  name: string;
+  attack: number;
+  power: number;
+  morale: number;
+  defense: number;
+  toughness: number;
+  cost: number;
+}
+
+export interface OrdersRO {
+  id: number;
+  name: string;
+  description: string;
+  cost: number;
+}
+
+export interface TraitRO {
+  id: number;
+  name: string;
+  description: string;
+  cost: number;
 }

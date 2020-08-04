@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
-import * as bcrypt from 'bcrypt-nodejs';
+import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 
 
@@ -26,4 +26,6 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
+
+
 }

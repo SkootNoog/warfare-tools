@@ -2,21 +2,29 @@
   <div class="container">
     <div class="card border border-primary" style="width: 25rem">
       <div class="card-body">
-        <h5 class="card-title">{{unit.unitName}}</h5>
+        <h5 class="card-title">{{unit.name}}</h5>
         <div class="row border rounded">
           <div class="col" style="width: 20rem">
-            <p class="text-left">{{ unit.ancestry }} {{ unit.experience }} {{ unit.equipment }} {{ unit.unitType }}</p>
+            <p class="text-left">{{ unit.ancestry.name }} {{ unit.experience }} {{ unit.equipment }} {{ unit.unitType }}</p>
           </div>
-          <div class="col">
-            <p class="text-right">d{{ unit.unitSize }}</p>
+          <div class="col-2">
+            <p class="text-right">d{{ unit.size }}</p>
           </div>
         </div>
         <div class="w-100"></div>
-        <!--<div class="row border rounded" *ngFor="let ability of unit.abilities">
+        <div class="row border rounded" *ngFor="let trait of unit.traits">
           <div class="col">
-            <p class="card-text">{{ability.abilityName}}: {{ability.description}}</p>
+            <p class="card-text">{{trait.name}}: {{trait.description}}</p>
           </div>
-        </div>-->
+          <div class="col-2">{{trait.cost}}</div>
+        </div>
+        <div class="w-100"></div>
+        <div class="row border rounded" *ngFor="let order of unit.orders">
+          <div class="col">
+            <p class="card-text">{{order.name}}: {{order.description}}</p>
+          </div>
+          <div class="col-2">{{order.cost}}</div>
+        </div>
       </div>
     </div>
   </div>
